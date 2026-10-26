@@ -1,0 +1,81 @@
+# Star, Galaxy or Quasar? 🔭
+
+**Teaching a computer to read the night sky.** A machine learning project that classifies objects seen by a telescope as a **star**, a **galaxy** or a **quasar**.
+
+*Lervin De La Rosa · Ironhack Machine Learning project*
+
+## The question
+
+Can a model tell what kind of object a telescope is looking at, using only its measurements?
+
+- **Input:** brightness in 5 color filters, redshift (distance) and sky position
+- **Output:** `STAR`, `GALAXY` or `QSO` (quasar)
+- **Type:** supervised classification
+
+## Data
+
+[Stellar Classification Dataset - SDSS17](https://www.kaggle.com/datasets/fedesoriano/stellar-classification-dataset-sdss17) (Kaggle), from the Sloan Digital Sky Survey.
+
+- 100,000 objects, 17 columns, no missing values
+- Classes: 59% galaxies, 22% stars, 19% quasars
+
+The dataset is **not stored in this repo**. The notebook downloads it automatically with `kagglehub` the first time it runs (about 7 MB).
+
+## Method
+
+1. **Cleaning:** dropped 9 ID / bookkeeping columns (they describe the telescope's records, not the object) and 1 row with a placeholder brightness of -9999.
+2. **Feature engineering:** added 4 colors, the differences between neighbouring filters: `u−g`, `g−r`, `r−i`, `i−z`.
+3. **Split:** 80% train / 20% test, stratified so both keep the same class mix.
+4. **Models:** a baseline (always guess "galaxy"), Logistic Regression, Random Forest and Gradient Boosting.
+5. **Evaluation:** accuracy and macro F1 (gives each class equal weight, because the classes are uneven).
+6. **Tuning:** Grid Search with 5-fold stratified cross-validation on Gradient Boosting.
+7. **Experiment:** the same models using **colors only**, without the expensive redshift measurement.
+
+## Results
+
+| Model | Accuracy | Macro F1 |
+|---|---|---|
+| Baseline (always "galaxy") | 59.4% | 0.249 |
+| Logistic Regression | 95.8% | 0.952 |
+| **Random Forest** | **98.0%** | **0.976** |
+| Gradient Boosting | 97.7% | 0.974 |
+| Gradient Boosting, tuned | 97.9% | 0.976 |
+| Best model, colors only | 88.6% | 0.853 |
+
+## Key findings
+
+- **Distance is the #1 clue.** Redshift accounts for about 49% of the Random Forest's feature importance. The next two are engineered colors (`r−i`, `g−r`).
+- **Stars are easy** (99.6% found). The main mistake is **quasars labelled as galaxies** (232 of 3,792), almost never as stars. The missed quasars are the closer ones (median redshift 0.59 vs 1.64 for all quasars), where quasars and galaxies overlap.
+- **Tuning helped only a little** (macro F1 0.974 → 0.976): the models were already near their limit.
+- **Colors only still reaches 88.6%.** That's useful in the real world: a survey could sort millions of cheap photos first, then spend expensive spectroscopy only on the interesting objects.
+- **Fun fact:** 63% of stars have a slightly negative redshift, meaning they're moving towards us.
+
+## Limitations and next steps
+
+- Tested on one survey (SDSS); data from other telescopes may behave differently.
+- Close the gap for the colors-only model with more features or other models.
+- Go deeper: classify types of stars and galaxies.
+
+## Project structure
+
+```
+stellar-classification/
+├── README.md
+├── requirements.txt
+├── notebooks/
+│   └── stellar_classification.ipynb   # full analysis, charts and results
+├── src/
+│   ├── data.py       # download and clean the data
+│   ├── features.py   # color features, feature/target split
+│   └── models.py     # models, evaluation, tuning
+└── slides/           # presentation (PDF)
+```
+
+## How to run
+
+```bash
+pip install -r requirements.txt
+jupyter notebook notebooks/stellar_classification.ipynb
+```
+
+Run all cells. The first run downloads the dataset. On Windows with antivirus HTTPS scanning (e.g. Avast), `truststore` fixes the SSL certificate error during the download.
