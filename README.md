@@ -68,8 +68,20 @@ stellar-classification/
 │   ├── data.py       # download and clean the data
 │   ├── features.py   # color features, feature/target split
 │   └── models.py     # models, evaluation, tuning
+├── images/           # space photos used in the slides
 └── slides/           # presentation (PDF)
 ```
+
+## Image credits
+
+The `images/` folder holds the pictures used in the slides, all from Wikimedia Commons:
+
+| File | Shows | Credit and licence |
+|---|---|---|
+| `sun.jpg` | The Sun (a star) | NASA/SDO (AIA), public domain |
+| `whirlpool-galaxy.jpg` | Whirlpool Galaxy (M51) | NASA & ESA (Hubble), public domain |
+| `quasar-3c273.jpg` | Quasar 3C 273 | ESA/Hubble & NASA, CC BY 2.0 |
+| `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 | ESO/M. Kornmesser, CC BY 4.0 |
 
 ## How to run
 
