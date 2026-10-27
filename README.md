@@ -27,20 +27,33 @@ The dataset is **not stored in this repo**. The notebook downloads it automatica
 2. **Feature engineering:** added 4 colors, the differences between neighbouring filters: `u−g`, `g−r`, `r−i`, `i−z`.
 3. **Split:** 80% train / 20% test, stratified so both keep the same class mix.
 4. **Models:** a baseline (always guess "galaxy"), Logistic Regression, Random Forest and Gradient Boosting.
-5. **Evaluation:** accuracy and macro F1 (gives each class equal weight, because the classes are uneven).
+5. **Evaluation:** accuracy, plus macro **precision**, **recall** and **F1**. "Macro" averages each score over the 3 classes, so every class counts equally even though the classes are uneven.
+   - **Precision:** when the model says a type, how often is it right? TP / (TP + FP)
+   - **Recall:** of all real objects of a type, how many did the model find? TP / (TP + FN)
+   - **F1:** the balance of the two, 2 × (precision × recall) / (precision + recall)
 6. **Tuning:** Grid Search with 5-fold stratified cross-validation on Gradient Boosting.
 7. **Experiment:** the same models using **colors only**, without the expensive redshift measurement.
 
 ## Results
 
-| Model | Accuracy | Macro F1 |
-|---|---|---|
-| Baseline (always "galaxy") | 59.4% | 0.249 |
-| Logistic Regression | 95.8% | 0.952 |
-| **Random Forest** | **98.0%** | **0.976** |
-| Gradient Boosting | 97.7% | 0.974 |
-| Gradient Boosting, tuned | 97.9% | 0.976 |
-| Best model, colors only | 88.6% | 0.853 |
+| Model | Accuracy | Macro precision | Macro recall | Macro F1 |
+|---|---|---|---|---|
+| Baseline (always "galaxy") | 59.4% | 0.198 | 0.333 | 0.249 |
+| Logistic Regression | 95.8% | 0.955 | 0.951 | 0.952 |
+| **Random Forest** | **98.0%** | **0.980** | **0.974** | **0.976** |
+| Gradient Boosting | 97.7% | 0.977 | 0.971 | 0.974 |
+| Gradient Boosting, tuned | 97.9% | 0.978 | 0.973 | 0.976 |
+| Best model, colors only | 88.6% | 0.862 | 0.846 | 0.853 |
+
+Per class, for the tuned model:
+
+| Class | Precision | Recall | F1 |
+|---|---|---|---|
+| Star | 0.990 | 0.996 | 0.993 |
+| Galaxy | 0.979 | 0.986 | 0.983 |
+| Quasar | 0.966 | 0.939 | 0.952 |
+
+Quasars have the lowest recall: the model misses about 6% of them, mostly calling them galaxies.
 
 ## Key findings
 
@@ -82,6 +95,8 @@ The `images/` folder holds the pictures used in the slides, all from Wikimedia C
 | `whirlpool-galaxy.jpg` | Whirlpool Galaxy (M51) | NASA & ESA (Hubble), public domain |
 | `quasar-3c273.jpg` | Quasar 3C 273 | ESA/Hubble & NASA, CC BY 2.0 |
 | `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 | ESO/M. Kornmesser, CC BY 4.0 |
+| `sombrero-galaxy.jpg` | Sombrero Galaxy (M104) | NASA/ESA and the Hubble Heritage Team (STScI/AURA), public domain |
+| `webb-deep-field.jpg` | Webb's First Deep Field | NASA, ESA, CSA and STScI, public domain |
 
 ## How to run
 

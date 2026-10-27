@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -28,14 +28,20 @@ def get_models():
 
 
 def evaluate_models(models, X_train, X_test, y_train, y_test):
-    """Fit each model and return a table of test accuracy and macro F1."""
+    """Fit each model and return a table of test accuracy, macro precision, macro recall and macro F1.
+
+    "Macro" means the score is computed for each class, then averaged, so every class counts equally.
+    zero_division=0 scores a class the model never predicts (e.g. the baseline) as 0 instead of warning.
+    """
     rows = []
     for name, model in models.items():
         model.fit(X_train, y_train)
         pred = model.predict(X_test)
         rows.append({"model": name,
                      "accuracy": accuracy_score(y_test, pred),
-                     "macro_F1": f1_score(y_test, pred, average="macro")})
+                     "macro_precision": precision_score(y_test, pred, average="macro", zero_division=0),
+                     "macro_recall": recall_score(y_test, pred, average="macro", zero_division=0),
+                     "macro_F1": f1_score(y_test, pred, average="macro", zero_division=0)})
     return pd.DataFrame(rows).set_index("model").round(4)
 
 
