@@ -110,6 +110,7 @@ The `images/` folder holds the pictures used in the slides. Most come from Wikim
 | `sdss-star.jpg` | A star from the dataset (RA 36.915, Dec 24.086) | Sloan Digital Sky Survey (SDSS DR17) |
 | `sdss-galaxy.jpg` | A galaxy from the dataset (RA 242.733, Dec 26.437) | Sloan Digital Sky Survey (SDSS DR17) |
 | `sdss-quasar.jpg` | A quasar from the dataset (RA 224.957, Dec 53.319) | Sloan Digital Sky Survey (SDSS DR17) |
+| `color-map.png` | Chart: stars, galaxies and quasars by color (u−g vs g−r) | Made from this project's data |
 
 ## How to run
 
