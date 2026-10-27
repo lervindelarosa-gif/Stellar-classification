@@ -5,6 +5,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassif
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -18,10 +19,15 @@ GRADIENT_BOOSTING_GRID = {
 
 
 def get_models():
-    """Return the baseline and the three models to compare, untrained."""
+    """Return the baseline and the four models to compare, untrained.
+
+    Logistic Regression and KNN measure distances between feature values, so they get a
+    StandardScaler inside a pipeline (fitted on the training data only, so no leakage).
+    """
     return {
         "Baseline (most common)": DummyClassifier(strategy="most_frequent"),
         "Logistic Regression": make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000)),
+        "KNN": make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5, n_jobs=-1)),
         "Random Forest": RandomForestClassifier(n_estimators=200, n_jobs=-1, random_state=RANDOM_STATE),
         "Gradient Boosting": HistGradientBoostingClassifier(random_state=RANDOM_STATE),
     }

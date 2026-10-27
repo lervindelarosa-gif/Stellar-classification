@@ -26,7 +26,7 @@ The dataset is **not stored in this repo**. The notebook downloads it automatica
 1. **Cleaning:** dropped 9 ID / bookkeeping columns (they describe the telescope's records, not the object) and 1 row with a placeholder brightness of -9999.
 2. **Feature engineering:** added 4 colors, the differences between neighbouring filters: `u−g`, `g−r`, `r−i`, `i−z`.
 3. **Split:** 80% train / 20% test, stratified so both keep the same class mix.
-4. **Models:** a baseline (always guess "galaxy"), Logistic Regression, Random Forest and Gradient Boosting.
+4. **Models:** a baseline (always guess "galaxy"), Logistic Regression, KNN, Random Forest and Gradient Boosting. Logistic Regression and KNN get a `StandardScaler` inside a pipeline, because they compare feature values directly; without scaling, KNN drops from 94.4% to 83.7%.
 5. **Evaluation:** accuracy, plus macro **precision**, **recall** and **F1**. "Macro" averages each score over the 3 classes, so every class counts equally even though the classes are uneven.
    - **Precision:** when the model says a type, how often is it right? TP / (TP + FP)
    - **Recall:** of all real objects of a type, how many did the model find? TP / (TP + FN)
@@ -40,6 +40,7 @@ The dataset is **not stored in this repo**. The notebook downloads it automatica
 |---|---|---|---|---|
 | Baseline (always "galaxy") | 59.4% | 0.198 | 0.333 | 0.249 |
 | Logistic Regression | 95.8% | 0.955 | 0.951 | 0.952 |
+| KNN (5 neighbours, scaled) | 94.4% | 0.944 | 0.933 | 0.938 |
 | **Random Forest** | **98.0%** | **0.980** | **0.974** | **0.976** |
 | Gradient Boosting | 97.7% | 0.977 | 0.971 | 0.974 |
 | Gradient Boosting, tuned | 97.9% | 0.978 | 0.973 | 0.976 |
