@@ -97,7 +97,7 @@ stellar-classification/
 
 ## Image credits
 
-The `images/` folder holds the pictures used in the slides, all from Wikimedia Commons:
+The `images/` folder holds the pictures used in the slides. Most come from Wikimedia Commons; the three `sdss-*.jpg` photos are SDSS DR17 image cutouts of objects in this dataset:
 
 | File | Shows | Credit and licence |
 |---|---|---|
@@ -107,6 +107,9 @@ The `images/` folder holds the pictures used in the slides, all from Wikimedia C
 | `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 (not used in the current slides) | ESO/M. Kornmesser, CC BY 4.0 |
 | `sombrero-galaxy.jpg` | Sombrero Galaxy (M104) | NASA/ESA and the Hubble Heritage Team (STScI/AURA), public domain |
 | `webb-deep-field.jpg` | Webb's First Deep Field | NASA, ESA, CSA and STScI, public domain |
+| `sdss-star.jpg` | A star from the dataset (RA 36.915, Dec 24.086) | Sloan Digital Sky Survey (SDSS DR17) |
+| `sdss-galaxy.jpg` | A galaxy from the dataset (RA 242.733, Dec 26.437) | Sloan Digital Sky Survey (SDSS DR17) |
+| `sdss-quasar.jpg` | A quasar from the dataset (RA 224.957, Dec 53.319) | Sloan Digital Sky Survey (SDSS DR17) |
 
 ## How to run
 
