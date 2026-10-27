@@ -55,6 +55,16 @@ Per class, for the tuned model:
 
 Quasars have the lowest recall: the model misses about 6% of them, mostly calling them galaxies.
 
+Confusion matrix for the tuned model (rows = real class, columns = predicted class, 20,000 test objects):
+
+| Real \ Predicted | Galaxy | Quasar | Star |
+|---|---|---|---|
+| **Galaxy** | **11,723** | 125 | 41 |
+| **Quasar** | 232 | **3,559** | 1 |
+| **Star** | 19 | 0 | **4,300** |
+
+The diagonal (bold) holds the correct predictions. The biggest error is 232 quasars predicted as galaxies.
+
 ## Key findings
 
 - **Distance is the #1 clue.** Redshift accounts for about 49% of the Random Forest's feature importance. The next two are engineered colors (`r−i`, `g−r`).
@@ -94,7 +104,7 @@ The `images/` folder holds the pictures used in the slides, all from Wikimedia C
 | `sun.jpg` | The Sun (a star) | NASA/SDO (AIA), public domain |
 | `whirlpool-galaxy.jpg` | Whirlpool Galaxy (M51) | NASA & ESA (Hubble), public domain |
 | `quasar-3c273.jpg` | Quasar 3C 273 | ESA/Hubble & NASA, CC BY 2.0 |
-| `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 | ESO/M. Kornmesser, CC BY 4.0 |
+| `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 (not used in the current slides) | ESO/M. Kornmesser, CC BY 4.0 |
 | `sombrero-galaxy.jpg` | Sombrero Galaxy (M104) | NASA/ESA and the Hubble Heritage Team (STScI/AURA), public domain |
 | `webb-deep-field.jpg` | Webb's First Deep Field | NASA, ESA, CSA and STScI, public domain |
 
