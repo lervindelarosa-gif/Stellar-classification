@@ -104,7 +104,8 @@ The `images/` folder holds the pictures used in the slides. Most come from Wikim
 |---|---|---|
 | `sun.jpg` | The Sun (a star) | NASA/SDO (AIA), public domain |
 | `whirlpool-galaxy.jpg` | Whirlpool Galaxy (M51) | NASA & ESA (Hubble), public domain |
-| `quasar-3c279-artist.jpg` | Artist's impression of quasar 3C 279 | ESO/M. Kornmesser, CC BY 4.0 |
+| `quasar-3c273-hubble-blue.jpg` | Quasar 3C 273 with its bright centre blocked (Hubble STIS coronagraph), cropped | NASA, ESA, Bin Ren (Université Côte d'Azur), CC BY 4.0 |
+| `quasar-3c279-artist.jpg` | Artist's impression of quasar 3C 279 (not used in the current slides) | ESO/M. Kornmesser, CC BY 4.0 |
 | `quasar-3c273.jpg` | Quasar 3C 273 (not used in the current slides) | ESA/Hubble & NASA, CC BY 2.0 |
 | `quasar-artist-impression.jpg` | Artist's drawing of quasar ULAS J1120+0641 (not used in the current slides) | ESO/M. Kornmesser, CC BY 4.0 |
 | `sombrero-galaxy.jpg` | Sombrero Galaxy (M104) | NASA/ESA and the Hubble Heritage Team (STScI/AURA), public domain |
