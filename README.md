@@ -4,6 +4,8 @@
 
 *Lervin De La Rosa · Ironhack Machine Learning project*
 
+🎤 **[View the presentation](https://claude.ai/artifact/12XcVWvnAAPH5dvuRDzGEQ)**
+
 ## The question
 
 Can a model tell what kind of object a telescope is looking at, using only its measurements?
@@ -80,6 +82,10 @@ The diagonal (bold) holds the correct predictions. The biggest error is 252 quas
 - Close the gap for the colors-only model with more features or other models.
 - Go deeper: classify types of stars and galaxies.
 
+## Presentation
+
+The slides are online: [Star, Galaxy or Quasar? (presentation)](https://claude.ai/artifact/12XcVWvnAAPH5dvuRDzGEQ)
+
 ## Project structure
 
 ```
@@ -92,8 +98,7 @@ stellar-classification/
 │   ├── data.py       # download and clean the data
 │   ├── features.py   # color features, feature/target split
 │   └── models.py     # models, evaluation, tuning
-├── images/           # space photos used in the slides
-└── slides/           # presentation (PDF)
+└── images/           # space photos used in the slides
 ```
 
 ## Image credits
